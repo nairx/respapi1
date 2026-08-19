@@ -2,7 +2,7 @@ package com.example.respapi1.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.example.respapi1.entity.Book;
@@ -12,7 +12,7 @@ import com.example.respapi1.repository.BookRepository;
 public class BookService {
 
 
-    final BookRepository bookRepository;
+    private BookRepository bookRepository;
  
     public BookService(BookRepository bookRepository){
         this.bookRepository = bookRepository;
@@ -26,7 +26,12 @@ public class BookService {
         return bookRepository.findById(id).orElse(null);
     }
 
+      public List<Book> findByAuthor(String author){
+        return bookRepository.findByAuthor(author);
+    }
+
     public Book save(Book book){
+        System.out.println(book);
         return bookRepository.save(book);
     }
 
