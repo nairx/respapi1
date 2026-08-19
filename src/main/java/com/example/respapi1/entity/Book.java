@@ -2,10 +2,15 @@ package com.example.respapi1.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 @Entity
+@NamedQuery(
+    name="Book.findByRating",
+    query = "select b from Book b where b.rating > :rating"
+)
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
